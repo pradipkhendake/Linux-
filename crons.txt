@@ -1,0 +1,177 @@
+1. Display 10 Most Recently Modified Files
+$ find . -type f -printf '%T@ %p\n' | sort -nr | head -10
+2. Find All Files Owned by User alice
+$ find /home -type f -user alice
+3. Show Line Numbers of error Matches
+$ grep -in "error" /var/log/syslog
+4. Display Top 5 CPU-Consuming Processes
+$ ps -eo pid,user,%cpu,comm --sort=-%cpu | head -6
+
+5. Accept N Numbers and Print Average
+#!/bin/bash
+echo "Enter how many numbers:"
+read n
+sum=0
+for ((i=1; i<=n; i++))
+do
+    echo "Enter number $i:"
+    read num
+    sum=$((sum + num))
+done
+
+average=$((sum / n))
+echo "Sum = $sum"
+echo "Average = $average"
+
+6. Display and Count Logged-in Users
+#!/bin/bash
+echo "Currently logged-in users:"
+who
+count=$(who | wc -l)
+echo "Total logged-in users = $count"
+
+7. Continuously Monitor Directory for New Files
+#!/bin/bash
+echo "Enter directory:"
+read dir
+
+echo "Monitoring $dir..."
+
+while true
+do
+    inotifywait -e create "$dir"
+    echo "New file created in $dir"
+done
+
+8. Processes Using More Than 20% CPU
+$ ps -eo pid,user,%cpu,comm --no-headers | awk '$3 > 20' | sort -k3 -nr
+
+9. Files Larger Than 50 MB Modified Within Last 3 Days
+$ find / -type f -size +50M -mtime -3 -print 2>/dev/null | while read file
+do
+    realpath "$file"
+done > recent_large_files.txt
+
+10. Give Nidhi Read and Write Access Using ACL
+$ setfacl -m u:Nidhi:rw /shared/data
+$ getfacl /shared/data
+
+11. Backup Files Modified Within Last 24 Hours
+#!/bin/bash
+backup="backup-$(date +%Y-%m-%d).tar.gz"
+find /home/user/documents -type f -mmin -1440 -print0 | tar --null -czvf "$backup" --files-from=-
+echo "Backup created: $backup"
+
+12. Display Files Sorted by Size
+#!/bin/bash
+echo "Enter directory:"
+read dir
+find "$dir" -type f -printf '%s %p\n' | sort -nr | while read size file
+do
+    filename=$(basename "$file")
+    owner=$(stat -c '%U' "$file")
+    date=$(stat -c '%y' "$file")
+
+    echo "Filename: $filename"
+    echo "Size: $size bytes"
+    echo "Owner: $owner"
+    echo "Last Modified: $date"
+    echo "-------------------------"
+done
+
+13. Interactive System Administration Menu
+#!/bin/bash
+while true
+do
+    echo "---------- MENU ----------"
+    echo "1. Display disk usage"
+    echo "2. Display top 10 CPU processes"
+    echo "3. Show logged-in users"
+    echo "4. Backup home directory"
+    echo "5. Exit"
+    echo "Enter choice:"
+    read choice
+    case $choice in
+
+        1)
+            df -h
+            ;;
+
+        2)
+            ps -eo pid,user,%cpu,comm --sort=-%cpu | head -11
+            ;;
+
+        3)
+            who
+            ;;
+
+        4)
+            tar -czf "home-backup-$(date +%Y-%m-%d).tar.gz" "$HOME"
+            echo "Home directory backup created."
+            ;;
+
+        5)
+            echo "Exiting..."
+            break
+            ;;
+
+        *)
+            echo "Invalid choice"
+            ;;
+    esac
+done
+
+14. Find Top 5 .log Files by Size
+$ find /var/log -type f -name "*.log" -printf '%s %p\n' | sort -nr | head -5
+
+15. Create 3 Hard Links and 2 Soft Links
+$ touch original.txt
+$ ln original.txt hard1.txt
+$ ln original.txt hard2.txt
+$ ln original.txt hard3.txt
+$ ln -s original.txt soft1.txt
+$ ln -s original.txt soft2.txt
+
+16. Verify Inode Numbers and Link Count
+$ ls -li original.txt hard1.txt hard2.txt hard3.txt soft1.txt soft2.txt
+$ stat original.txt
+
+17. Delete Original File and Check Links
+$ rm original.txt
+$ cat hard1.txt
+$ cat soft1.txt
+
+18. Largest 10 Directories Under /home
+$ du -sh /home/* 2>/dev/null | sort -hr | head -10
+
+19. Accept Unlimited Numbers as Parameters
+#!/bin/bash
+if [ $# -eq 0 ]
+then
+    echo "Please provide numbers as parameters."
+    exit 1
+fi
+count=$#
+sum=0
+highest=$1
+lowest=$1
+for num in "$@"
+do
+    sum=$((sum + num))
+
+    if [ $num -gt $highest ]
+    then
+        highest=$num
+    fi
+
+    if [ $num -lt $lowest ]
+    then
+        lowest=$num
+    fi
+done
+average=$((sum / count))
+echo "Total count = $count"
+echo "Sum = $sum"
+echo "Average = $average"
+echo "Highest = $highest"
+echo "Lowest = $lowest"

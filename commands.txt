@@ -1,0 +1,349 @@
+1. Navigation Commands
+$ pwd
+$ ls
+$ ls -l
+$ ls -a
+$ ls -la
+$ ls -lh
+$ ls -lt
+$ ls -ltr
+$ cd
+$ cd ..
+$ cd ~
+$ cd -
+2. File & Directory Creation
+$ touch file.txt
+$ mkdir directory
+$ mkdir -p dir1/dir2
+3. Copy Commands
+$ cp file1 file2
+$ cp file /path/
+$ cp -r dir1 dir2
+4. Move & Rename Commands
+$ mv file1 file2
+$ mv file /path/
+$ mv dir1 dir2
+5. Remove Commands
+$ rm file
+$ rm -r directory
+$ rm -rf directory
+$ rmdir directory
+6. File Viewing Commands
+$ cat file
+$ tac file
+$ more file
+$ less file
+$ head file
+$ tail file
+$ head -n 10 file
+$ tail -n 10 file
+$ tail -f file
+7. File Information Commands
+$ file file
+$ stat file
+$ wc file
+$ wc -l file
+$ wc -w file
+$ wc -c file
+8. Find Commands
+$ find . -name "file.txt"
+$ find /home -name "*.txt"
+$ find . -type f
+$ find . -type d
+$ find . -user alice
+$ find . -size +10M
+$ find . -mtime -1
+$ find . -perm 755
+9. Locate Commands
+$ locate file.txt
+$ locate "*.conf"
+10. Grep Commands
+$ grep "error" file
+$ grep -i "error" file
+$ grep -n "error" file
+$ grep -v "error" file
+$ grep -r "error" directory
+$ grep -w "error" file
+$ grep -c "error" file
+11. Cut Commands
+$ cut -d: -f1 file
+$ cut -d: -f1,3 file
+$ cut -c1-5 file
+12. Sort Commands
+$ sort file
+$ sort -r file
+$ sort -n file
+$ sort -u file
+13. Uniq Commands
+$ uniq file
+$ uniq -c file
+$ sort file | uniq
+14. AWK Commands
+$ awk '{print $1}' file
+$ awk '{print $1,$2}' file
+$ awk -F: '{print $1}' /etc/passwd
+15. Sed Commands
+$ sed 's/old/new/' file
+$ sed 's/old/new/g' file
+$ sed -n '1,5p' file
+$ sed -n '/error/p' file
+16. Text Processing Commands
+$ paste file1 file2
+$ tr 'a-z' 'A-Z' < file
+$ column -t file
+17. File Comparison Commands
+$ diff file1 file2
+$ diff -u file1 file2
+$ cmp file1 file2
+18. Hard Link Commands
+$ ln file1 hardlink
+$ ls -li
+19. Soft Link Commands
+$ ln -s file1 softlink
+$ readlink softlink
+20. Gzip Commands
+$ gzip file
+$ gunzip file.gz
+$ gzip -d file.gz
+21. Zip Commands
+$ zip file.zip file
+$ zip -r directory.zip directory/
+$ unzip file.zip
+$ unzip -l file.zip
+22. Tar Commands
+$ tar -cvf archive.tar directory/
+$ tar -xvf archive.tar
+$ tar -tvf archive.tar
+$ tar -czvf archive.tar.gz directory/
+$ tar -xzvf archive.tar.gz
+$ tar -cjvf archive.tar.bz2 directory/
+$ tar -xjvf archive.tar.bz2
+$ tar -cJvf archive.tar.xz directory/
+$ tar -xJvf archive.tar.xz
+23. Compressed File Viewing
+$ zcat file.gz
+24. Help Commands
+$ man ls
+$ whatis ls
+$ whereis ls
+$ ls --help
+25. Date & Time Commands
+$ date
+$ cal
+$ cal 2026
+$ time ls
+26. Calculator Commands
+$ bc
+$ bc -l
+$ echo "10 / 3" | bc -l
+27. User Information Commands
+$ who
+$ whoami
+$ who am i
+$ w
+$ finger
+$ id
+$ id username
+28. User Management Commands
+$ sudo useradd username
+$ sudo adduser username
+$ sudo passwd username
+$ sudo usermod username
+$ sudo userdel username
+$ sudo userdel -r username
+29. Group Management Commands
+$ groupadd groupname
+$ addgroup groupname
+$ groupdel groupname
+$ groups
+$ groups username
+$ sudo usermod -aG groupname username
+$ sudo usermod -g groupname username
+30. Permission Commands
+$ ls -l
+$ chmod 755 file
+$ chmod 644 file
+$ chmod 700 file
+$ chmod 777 file
+$ chmod u+x file
+$ chmod g+w file
+$ chmod o-r file
+$ chmod -R 755 directory/
+31. Ownership Commands
+$ sudo chown user file
+$ sudo chown user:group file
+$ sudo chown -R user:group directory/
+$ sudo chgrp group file
+$ sudo chgrp -R group directory/
+32. Special Permission Commands
+$ chmod u+s file
+$ chmod g+s directory
+$ chmod +t directory
+$ chmod 4755 file
+$ chmod 2755 directory
+$ chmod 1777 directory
+33. ACL Commands
+$ getfacl file
+$ setfacl -m u:alice:rwx file
+$ setfacl -m g:group:rwx file
+$ setfacl -x u:alice file
+$ setfacl -b file
+34. Process Commands
+$ ps
+$ ps -e
+$ ps -ef
+$ ps aux
+$ ps -f
+$ top
+$ pstree
+$ pgrep process
+$ pidof process
+$ kill PID
+$ kill -9 PID
+$ pkill process
+35. Job Management Commands
+$ jobs
+$ bg
+$ fg
+$ command &
+36. System Information Commands
+$ uname
+$ uname -a
+$ hostname
+$ hostnamectl
+$ uptime
+$ lscpu
+$ lsblk
+$ lspci
+$ lsusb
+37. Memory Commands
+$ free
+$ free -h
+$ vmstat
+$ cat /proc/meminfo
+38. Disk Usage Commands
+$ df
+$ df -h
+$ du
+$ du -h
+$ du -sh directory/
+$ du -sh *
+39. Disk & Partition Commands
+$ lsblk
+$ blkid
+$ fdisk -l
+$ sudo fdisk /dev/sdb
+$ parted -l
+$ sudo parted /dev/sdb
+40. Mount & Unmount Commands
+$ mount
+$ sudo mount /dev/sdb1 /mnt
+$ sudo umount /mnt
+$ df -T
+$ lsblk -f
+41. IP Address Commands
+$ ip addr
+$ ip a
+$ ip addr show
+$ ip link
+$ ip link show
+$ ip route
+$ ip route show
+42. IP Configuration Commands
+$ sudo ip addr add 192.168.1.10/24 dev eth0
+$ sudo ip addr del 192.168.1.10/24 dev eth0
+43. Ping Commands
+$ ping 8.8.8.8
+$ ping google.com
+$ ping -c 4 8.8.8.8
+44. Network Monitoring Commands
+$ ss
+$ ss -tuln
+$ netstat
+$ netstat -tuln
+$ netstat -rn
+$ ip neigh
+$ arp
+45. Network Troubleshooting Commands
+$ traceroute google.com
+$ nslookup google.com
+$ dig google.com
+46. SSH Commands
+$ ssh username@server
+$ ssh -p 22 username@server
+47. SCP Commands
+$ scp file.txt username@server:/home/user/
+$ scp username@server:/home/user/file.txt .
+48. SFTP Commands
+$ sftp username@server
+$ get file.txt
+$ put file.txt
+$ ls
+$ pwd
+$ exit
+49. Telnet Commands
+$ telnet hostname 23
+50. FTP Commands
+$ ftp server
+51. Service Management Commands
+$ systemctl status service
+$ systemctl start service
+$ systemctl stop service
+$ systemctl restart service
+$ systemctl enable service
+$ systemctl disable service
+$ systemctl is-active service
+$ systemctl is-enabled service
+52. Log Management Commands
+$ ls /var/log/
+$ cat /var/log/syslog
+$ less /var/log/syslog
+$ tail /var/log/syslog
+$ tail -f /var/log/syslog
+$ journalctl
+$ journalctl -b
+$ journalctl -u ssh
+$ journalctl -f
+53. System Configuration Commands
+$ env
+$ printenv
+$ hostname
+$ hostnamectl
+$ timedatectl
+$ localectl
+54. Important Configuration Files
+$ cat /etc/passwd
+$ cat /etc/group
+$ cat /etc/shadow
+$ cat /etc/hosts
+$ cat /etc/hostname
+$ cat /etc/resolv.conf
+$ cat /etc/fstab
+55. History Commands
+$ history
+$ history 10
+$ history | grep ssh
+56. Alias Commands
+$ alias
+$ alias ll='ls -la'
+$ unalias ll
+57. Echo Commands
+$ echo "Hello"
+$ echo $HOME
+$ echo $PATH
+58. Vim Commands
+$ vi file.txt
+$ vim file.txt
+59. Nano Commands
+$ nano file.txt
+60. Sudo Commands
+$ sudo command
+$ sudo -i
+$ sudo -u username command
+61. Redirection & Pipe Commands
+$ command > file
+$ command >> file
+$ command < file
+$ command 2> error.txt
+$ command > output.txt 2>&1
+$ command1 | command2
